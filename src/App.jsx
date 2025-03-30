@@ -17,8 +17,8 @@ import "./App.css";
 import AnalysisPage from "./components/AnalysisPage.jsx";
 import Inventory from "./components/Inventory.jsx";
 import Layout from "./components/Layout";
-// import HelpSection from "./components/HelpSection.jsx";
-// Protected route component
+import RecipeAssistant from "./components/RecipeAssistant.jsx";
+
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
 
@@ -31,7 +31,7 @@ const ProtectedRoute = ({ children }) => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   return children;
@@ -57,9 +57,9 @@ function App() {
             <Route
               path="/dashboard"
               element={
-                <ProtectedRoute>
+                // <ProtectedRoute>
                   <Layout><Dashboard /></Layout>
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
             <Route
@@ -71,17 +71,21 @@ function App() {
               }
             />
             <Route
-              path="/AnalysisPage"
+              path="/analysis"
               element={
-                <Layout><AnalysisPage /></Layout>
+                // <ProtectedRoute>
+                  <Layout><AnalysisPage /></Layout>
+                // </ProtectedRoute>
               }
             />
-            {/* <Route
-              path="/HelpSection"
+            <Route
+              path="/recipeassistant"
               element={
-                <Layout><HelpSection /></Layout>
+                // <ProtectedRoute>
+                  <Layout><RecipeAssistant /></Layout>
+                // </ProtectedRoute>
               }
-            /> */}
+            />
           </Routes>
         </Router>
       </InventoryProvider>

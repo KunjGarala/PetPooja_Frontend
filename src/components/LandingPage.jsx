@@ -1,9 +1,7 @@
 import React from "react";
-
 import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
-  
   const features = [
     {
       title: "AI Inventory Tracking",
@@ -59,10 +57,8 @@ const LandingPage = () => {
 
   return (
     <div className="bg-gray-950 text-white font-sans antialiased">
-      
-
       {/* Hero Section */}
-      <section id='home' className="relative h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 to-purple-900/50 pt-16">
+      <section id="home" className="relative h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 to-purple-900/50 pt-16">
         <div className="relative z-10 text-center px-4 max-w-3xl">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 tracking-tight leading-snug">
             <span className="bg-gradient-to-r from-purple-500 to-cyan-400 text-transparent bg-clip-text">
@@ -83,7 +79,7 @@ const LandingPage = () => {
               Schedule Demo
             </button>
             <button
-              onClick={() => scrollToSection('benefits')}
+              onClick={() => scrollToSection('howtouse')}
               className="border-2 border-cyan-500 text-cyan-500 hover:bg-cyan-500/10 font-bold py-3 px-8 rounded-full transition-colors duration-300 text-sm"
             >
               How It Works
@@ -121,9 +117,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
-
-      <section id="how-it-works" className="py-16 bg-gray-950" >
+      {/* How To Use Section */}
+      <section id="howtouse" className="py-16 bg-gray-950">
         <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-3 tracking-tight">
@@ -158,7 +153,7 @@ const LandingPage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gray-800">
+      <section id="stats" className="py-16 bg-gray-800">
         <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {stats.map((stat, index) => (
@@ -218,7 +213,7 @@ const LandingPage = () => {
               <ul className="space-y-2">
                 <li><Link to="/dashboard" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Dashboard</Link></li>
                 <li><Link to="/inventory" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Inventory</Link></li>
-                <li><Link to="/menu" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Menu Optimizer</Link></li>
+                <li><Link to="/recipeassistant" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Recipe Assistant</Link></li>
               </ul>
             </div>
             <div>
@@ -227,8 +222,8 @@ const LandingPage = () => {
               </h4>
               <ul className="space-y-2">
                 <li><button onClick={() => scrollToSection('features')} className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Features</button></li>
-                <li><button onClick={() => scrollToSection('benefits')} className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Benefits</button></li>
-                <li><a href="https://docs.petpooja.ai" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Documentation</a></li>
+                <li><button onClick={() => scrollToSection('howtouse')} className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">How It Works</button></li>
+                <li><a href="https://docs.smartbites.ai" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Documentation</a></li>
               </ul>
             </div>
             <div>
@@ -236,9 +231,9 @@ const LandingPage = () => {
                 Contact
               </h4>
               <div className="flex flex-col space-y-2">
-                <a href="mailto:support@petpooja.ai" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Support</a>
+                <a href="mailto:support@smartbites.ai" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Support</a>
                 <a href="tel:+11234567890" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">Sales</a>
-                <a href="https://status.petpooja.ai" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">System Status</a>
+                <a href="https://status.smartbites.ai" className="text-gray-400 hover:text-cyan-500 transition-colors duration-300 text-xs">System Status</a>
               </div>
             </div>
           </div>
