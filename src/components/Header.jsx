@@ -22,6 +22,14 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Navigation items for authenticated vs unauthenticated users
+    const desktopNavItems = isAuthenticated 
+        ? ["Dashboard", "Inventory", "Analysis", "Profile", "RecipeAssistant"]
+        : ["Home", "Features", "HowToUse"];
+
+    const mobileNavItems = isAuthenticated 
+        ? ["Dashboard", "Inventory", "Analysis", "Profile"]
+        : ["Home", "Features", "HowToUse"];
 
     return (
         <div className="bg-gray-950 text-white font-sans antialiased">
@@ -49,17 +57,19 @@ const Header = () => {
 
                             {/* Desktop Navigation */}
                             <ul className="hidden md:flex space-x-8">
-                                {["Dashboard", "Inventory", "Analysis", "Profile","RecipeAssistant"].map((item, index) => (
+                                {desktopNavItems.map((item, index) => (
                                     <motion.li 
                                         key={index}
                                         whileHover={{ y: -2 }}
                                         transition={{ type: "spring", stiffness: 300 }}
                                     >
                                         <Link
-                                            to={`/${item.toLowerCase()}`}
+                                            to={isAuthenticated 
+                                                ? `/${item.toLowerCase()}` 
+                                                : `/#${item.toLowerCase()}`}
                                             className="relative text-gray-300 hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider group font-medium"
                                         >
-                                            {item}
+                                            {item.replace(/([A-Z])/g, ' $1').trim()}
                                             <span className="absolute bottom-[-3px] left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-400 group-hover:w-full transition-all duration-300"></span>
                                         </Link>
                                     </motion.li>
@@ -110,7 +120,7 @@ const Header = () => {
                             </button>
                         </div>
 
-                        {/* Mobile Menu - Positioned absolutely */}
+                        {/* Mobile Menu */}
                         {isMobileMenuOpen && (
                             <motion.div
                                 initial={{ opacity: 0, y: -20 }}
@@ -119,17 +129,41 @@ const Header = () => {
                             >
                                 <div className="max-w-7xl mx-auto px-6 py-4">
                                     <ul className="space-y-4">
-                                        {["Dashboard", "Inventory", "Analysis", "Profile"].map((item, index) => (
+                                        {mobileNavItems.map((item, index) => (
                                             <li key={index}>
                                                 <Link
-                                                    to={`/${item.toLowerCase()}`}
+                                                    to={isAuthenticated 
+                                                        ? `/${item.toLowerCase()}` 
+                                                        : `/#${item.toLowerCase()}`}
                                                     className="block text-gray-300 hover:text-white transition-colors duration-300 text-sm uppercase tracking-wider font-medium"
                                                     onClick={() => setIsMobileMenuOpen(false)}
                                                 >
-                                                    {item}
+                                                    {item.replace(/([A-Z])/g, ' $1').trim()}
                                                 </Link>
                                             </li>
                                         ))}
+                                        {!isAuthenticated && (
+                                            <>
+                                                <li>
+                                                    <Link
+                                                        to="/login"
+                                                        className="block bg-gradient-to-r from-purple-600 to-cyan-500 px-4 py-2 rounded-full text-white text-center text-sm shadow-lg shadow-purple-500/20 font-medium"
+                                                        onClick={() => setIsMobileMenuOpen(false)}
+                                                    >
+                                                        Login
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link
+                                                        to="/register"
+                                                        className="block bg-gradient-to-r from-purple-600 to-cyan-500 px-4 py-2 rounded-full text-white text-center text-sm shadow-lg shadow-purple-500/20 font-medium"
+                                                        onClick={() => setIsMobileMenuOpen(false)}
+                                                    >
+                                                        Sign Up
+                                                    </Link>
+                                                </li>
+                                            </>
+                                        )}
                                     </ul>
                                 </div>
                             </motion.div>
