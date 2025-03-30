@@ -1,4 +1,3 @@
-// In App.jsx
 import React from "react";
 import {
     BrowserRouter as Router,
@@ -7,12 +6,14 @@ import {
     Navigate,
 } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
-import Layout from "./components/Layout";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import LandingPage from "./components/LandingPage";
-import ProfilePage from "./components/ProfilePage";
+import Layout from "./components/Layout.jsx";
+import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
+import LandingPage from "./components/LandingPage.jsx";
+import ProfilePage from "./components/ProfilePage.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 import "./App.css";
+import AnalysisPage from "./components/AnalysisPage.jsx";
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -25,7 +26,7 @@ const ProtectedRoute = ({ children }) => {
 
     // Once loaded, check if authenticated
     if (!isAuthenticated) {
-        return <Navigate to="/login"/>;
+        return <Navigate to="/login" />;
     }
 
     return children;
@@ -48,11 +49,24 @@ function AppContent() {
                 <Route
                     path="/profile"
                     element={
+                        <ProtectedRoute>
                             <Layout>
                                 <ProfilePage />
                             </Layout>
+                        </ProtectedRoute>
                     }
                 />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <ProtectedRoute>
+                            <Layout>
+                                <Dashboard />
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+            
             </Routes>
         </Router>
     );
@@ -62,6 +76,7 @@ function App() {
     return (
         <AuthProvider>
             <AppContent />
+            <AnalysisPage />
         </AuthProvider>
     );
 }
