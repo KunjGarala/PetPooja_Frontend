@@ -22,12 +22,6 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Enhanced smooth scroll with offset
-    const scrollWithOffset = (el) => {
-        const yOffset = -80;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-    };
 
     return (
         <div className="bg-gray-950 text-white font-sans antialiased">
@@ -55,7 +49,7 @@ const Header = () => {
 
                             {/* Desktop Navigation */}
                             <ul className="hidden md:flex space-x-8">
-                                {["Dashboard", "Inventory", "Analysis", "Profile"].map((item, index) => (
+                                {["Dashboard", "Inventory", "Analysis", "Profile","RecipeAssistant"].map((item, index) => (
                                     <motion.li 
                                         key={index}
                                         whileHover={{ y: -2 }}

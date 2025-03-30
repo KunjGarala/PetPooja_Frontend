@@ -5,7 +5,7 @@ const InventoryContext = createContext();
 export const InventoryProvider = ({ children }) => {
   const [inventory, setInventory] = useState([
     { id: '1', name: 'Tomatoes', quantity: 100 },
-    { id: '2', name: 'Onions', quantity: 150 },
+    { id: '2', name: 'Strawberry', quantity: 150 },
     { id: '3', name: 'Chicken', quantity: 80 },
   ]);
 
